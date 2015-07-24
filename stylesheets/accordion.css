@@ -1,0 +1,25 @@
+/* line 1, ../sass/accordion.scss */
+.accordion {
+  	/**
+       * Trigger. 
+       * It is assume odd children like a trigger
+       */
+}
+/* line 8, ../sass/accordion.scss */
+.accordion *:nth-child(odd) {
+  padding: 10px;
+  border-bottom: solid 1px #ccc;
+  background: #ddd;
+}
+/* line 15, ../sass/accordion.scss */
+.accordion .content {
+  max-height: 1000px;
+  transition: max-height .5s;
+  overflow-y: hidden;
+  height: 200px;
+  padding: 10px;
+}
+/* line 23, ../sass/accordion.scss */
+.accordion .content.hide {
+  max-height: 0;
+}

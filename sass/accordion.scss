@@ -1,0 +1,27 @@
+.accordion {
+	
+
+	/**
+     * Trigger. 
+     * It is assume odd children like a trigger
+     */
+	*:nth-child(odd) {
+		padding: 10px;
+		border-bottom: solid 1px #ccc;
+		background: #ddd;
+
+	}
+
+	.content {
+		max-height: 1000px;
+		transition: max-height .5s;
+		overflow-y: hidden;
+		height: 200px;
+		padding: 10px;
+	}
+	
+	.content.hide {
+		max-height: 0;
+	}
+
+}
