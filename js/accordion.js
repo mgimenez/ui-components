@@ -36,20 +36,42 @@
             return target.tagName === that.triggerName && target.parentElement === that.wrapper;
         }
 
+
+
         this.wrapper.addEventListener('click', function(event) {
 
-        	var target = event.target;
-        	
+            var target = event.target;
+
             if (that.isTrigger(target)) {
+
                 if (target.nextElementSibling.classList.contains('active')) {
                     target.nextElementSibling.classList.remove('active');
+                    var openEvent = new CustomEvent('accordion-close', {detail: {target: target.nextElementSibling}});
+                that.wrapper.dispatchEvent(openEvent);
+
                 } else {
-                    that.wrapper.querySelector('.active') ? that.wrapper.querySelector('.active').classList.remove('active') : ''
+                    if (that.wrapper.querySelector('.active')) {
+                        var closeEvent = new CustomEvent('accordion-close', {detail: {target:that.wrapper.querySelector('.active') }});
+                        that.wrapper.querySelector('.active').classList.remove('active');
+                        that.wrapper.dispatchEvent(closeEvent);
+                    }
                     target.nextElementSibling.classList.add('active');
+                    var openEvent = new CustomEvent('accordion-open', {detail: {target: target.nextElementSibling}});
+                that.wrapper.dispatchEvent(openEvent);
                 }
-        	}
+
+            }
 
         });
+    
+        that.wrapper.addEventListener('accordion-close', function(e) {
+            console.log('close', e.detail.target);
+        })
+
+        that.wrapper.addEventListener('accordion-open', function(e) {
+            console.log('open', e.detail.target);
+        })
+
     }
 
     /**
