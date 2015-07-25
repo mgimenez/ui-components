@@ -13,15 +13,21 @@
 	}
 
 	.content {
-		max-height: 1000px;
+		max-height: 0;
 		transition: max-height .5s;
 		overflow-y: hidden;
-		height: 200px;
-		padding: 10px;
+		padding: 0 10px;
+
+		&:after,
+		&:before {
+			content: '';
+			height: 10px;
+			display: block;
+		}
 	}
 	
-	.content.hide {
-		max-height: 0;
+	.content.active {
+		max-height: 1000px;
 	}
 
 }

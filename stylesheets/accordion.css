@@ -13,13 +13,18 @@
 }
 /* line 15, ../sass/accordion.scss */
 .accordion .content {
-  max-height: 1000px;
+  max-height: 0;
   transition: max-height .5s;
   overflow-y: hidden;
-  height: 200px;
-  padding: 10px;
+  padding: 0 10px;
 }
-/* line 23, ../sass/accordion.scss */
-.accordion .content.hide {
-  max-height: 0;
+/* line 21, ../sass/accordion.scss */
+.accordion .content:after, .accordion .content:before {
+  content: '';
+  height: 10px;
+  display: block;
+}
+/* line 29, ../sass/accordion.scss */
+.accordion .content.active {
+  max-height: 1000px;
 }

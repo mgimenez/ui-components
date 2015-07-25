@@ -1,18 +1,11 @@
 (function (win, doc) {
     'use strict';
 
-	// var accordion = doc.querySelectorAll('.accordion');
 	/**
      * Discloses information progressively, revealing only the essentials.
      * @constructor
-     * @param {Element} wrapper A container with the "disclosure" attribute.
-     * @returns {disclosure} A new instance of Disclosure.
-     *
-     * @todo Sometimes the element must be the trigger: <button disclosure disclosure-event="click"....> It has the 3 properties: disclosure, disclosure-url and disclosure-container.
-     * @todo Unit testing Jasmine.
-     * @todo loading spinner
-     * @todo Preload method to save time on predictible loadings. Just do the request and grab response into this.responses.
-     * @todo usar localstorage para ni siquiera hacer el primer request
+     * @param {Element} wrapper A container with the "accordion" class name
+     * @returns {accordion} A new instance of Accordion.
      */
     function Accordion(wrapper) {
         /**
@@ -33,13 +26,27 @@
          */
         this.triggerName = wrapper.children[0].tagName;
 
+        /**
+         * Gets an element target 
+         * @private
+         * @param {Element}
+         * @returns {Boolean}
+         */
+        this.isTrigger = function (target) {
+            return target.tagName === that.triggerName && target.parentElement === that.wrapper;
+        }
+
         this.wrapper.addEventListener('click', function(event) {
 
         	var target = event.target;
         	
-        	if (target.tagName === that.triggerName && target.parentElement === that.wrapper) {
-        		target.classList.toggle('active');
-        		target.nextElementSibling.classList.toggle('hide');
+            if (that.isTrigger(target)) {
+                if (target.nextElementSibling.classList.contains('active')) {
+                    target.nextElementSibling.classList.remove('active');
+                } else {
+                    that.wrapper.querySelector('.active') ? that.wrapper.querySelector('.active').classList.remove('active') : ''
+                    target.nextElementSibling.classList.add('active');
+                }
         	}
 
         });
