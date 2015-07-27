@@ -11,7 +11,7 @@
 	/**
      * Discloses information progressively, revealing only the essentials.
      * @constructor
-     * @param {Element} wrapper A container with the "accordion" class name
+     * @param {HTMLElement} wrapper A container with the "accordion" class name
      * @returns {accordion} A new instance of Accordion.
      */
     function Tab(wrapper) {
@@ -43,7 +43,7 @@
          * Gets a element, find node list in his parentElement (siblings), "cast" HTMLNodeCollection into an true Array and 
          * get indexOf.
          * @private
-         * @param {Element}
+         * @param {HTMLElement}
          * @returns {String}
          */
         this.getIndex = function(el) {
@@ -55,7 +55,7 @@
             event.preventDefault();
             var target = event.target;
             
-            if (that.nav.querySelector('.active') !== target)
+            if (that.nav.querySelector('.active') && that.nav.querySelector('.active') !== target)
                 that.close();
 
             if (!target.classList.contains('active'))
@@ -76,13 +76,14 @@
     /**
      * Get a element, add class name active on param element and on content with the same index, event emit open
      * @private
-     * @param {Element}
+     * @param {HTMLElement}
      * @eventsEmit {tab-open: {tab, content}}
      */
     Tab.prototype.open = function (trigger) {
 
         var content = this.contents.children[this.getIndex(trigger)],
             openEvent = new CustomEvent('tab-open', {detail: {tab: trigger, content: content}});
+        this.close();
 
         trigger.classList.add('active');
         content.classList.add('active');
@@ -104,10 +105,12 @@
                 content: this.contents.querySelector('.active')
             }
         });
-
-        this.nav.querySelector('.active').classList.remove('active');
-        this.contents.querySelector('.active').classList.remove('active');
-        this.wrapper.dispatchEvent(closeEvent);
+        
+        if (this.nav.querySelector('.active')) {
+            this.nav.querySelector('.active').classList.remove('active');
+            this.contents.querySelector('.active').classList.remove('active');
+            this.wrapper.dispatchEvent(closeEvent);
+        }
 
     
     }
@@ -116,7 +119,6 @@
      * Init instances component
      */
     function initialize() {
-        // `container` is to search for new disclosures within a new AJAX response
         var wrappers = doc.querySelectorAll('.tab'),
             i = 0,
             j = wrappers.length;

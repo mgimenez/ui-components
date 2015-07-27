@@ -5,7 +5,11 @@
   border-right: solid 1px #aaa;
   	/**
        * Trigger. 
-       * It is assume odd children like a trigger
+       * It is assume odd adjacent children like a trigger
+       */
+  	/**
+       * Content. 
+       * It is assume event children like a content
        */
 }
 /* line 11, ../sass/accordion.scss */
@@ -17,7 +21,7 @@
   display: block;
 }
 /* line 19, ../sass/accordion.scss */
-.accordion > *:nth-child(odd).active + div {
+.accordion > *:nth-child(odd).active + * {
   max-height: 1000px;
 }
 /* line 23, ../sass/accordion.scss */
@@ -34,15 +38,15 @@
   right: 10px;
   color: #aaa;
 }
-/* line 38, ../sass/accordion.scss */
-.accordion .content {
+/* line 42, ../sass/accordion.scss */
+.accordion > *:nth-child(even) {
   max-height: 0;
   transition: max-height .5s;
   overflow-y: hidden;
   padding: 0 10px;
 }
-/* line 44, ../sass/accordion.scss */
-.accordion .content:after, .accordion .content:before {
+/* line 48, ../sass/accordion.scss */
+.accordion > *:nth-child(even):after, .accordion > *:nth-child(even):before {
   content: '';
   height: 10px;
   display: block;

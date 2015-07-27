@@ -1,51 +1,62 @@
 .tab {
 
+	/* Fix inline-block extra margin */
+	font-size: 0;
+
 	/**
-     * Trigger. 
-     * It is assume first children ul like a trigger list
+     * Container Triggers. 
+     * It is assume first adjacent child like a container of triggers
      */
-	& > nav {
+	& > *:first-child {
 		overflow: hidden;
 		display: inline-block;
-
-		a:first-child {
-			border-left: solid 1px #aaa;
-		}
 		
-		a {
+		/* Fix inline-block extra margin */
+		font-size: initial;
+		margin-bottom: -1px;
+		
+
+		/**
+		 * List of triggers
+		 */
+		& > * {
 			float: left;
 			background: #eee;
 			border-top: solid 1px #aaa;
 			border-right: solid 1px #aaa;
+			border-bottom: solid 1px #aaa;
 			padding: 5px;
-		}
 
-		a.active {
-			border-bottom: solid 1px #fff;
-			background: #fff;
-		}	
+			&:first-child {
+				border-left: solid 1px #aaa;
+			}
+
+			&.active {
+				border-bottom: solid 1px #fff;
+				background: #fff;
+			}	
+		}
 	}
 	
 
 	/**
-     * Content
-     * It is assume adjacent children div like a containers of content
+     * Container Contents
+     * It is assume second adjacent child like a container of contents
      */
-
-    & > div {
+    & > * + * {
 		border: solid 1px #aaa;
 		padding: 10px;
-		margin-top: -3px;
+		
+		/* Fix inline-block extra margin */
+		font-size: initial;
+
+		& > * {
+			display: none;
+		}
+		
+		& > *.active {
+			display: block;
+		}
 	}
-
-	& > div > * {
-		display: none;
-
-	}
-
-	& > div > *.active {
-		display: block;
-	}
-
 
 }

@@ -1,47 +1,57 @@
 /* line 1, ../sass/tab.scss */
 .tab {
+  /* Fix inline-block extra margin */
+  font-size: 0;
   	/**
-       * Trigger. 
-       * It is assume first children ul like a trigger list
+       * Container Triggers. 
+       * It is assume first adjacent child like a container of triggers
        */
   	/**
-       * Content
-       * It is assume adjacent children div like a containers of content
+       * Container Contents
+       * It is assume second adjacent child like a container of contents
        */
 }
-/* line 7, ../sass/tab.scss */
-.tab > nav {
+/* line 10, ../sass/tab.scss */
+.tab > *:first-child {
   overflow: hidden;
   display: inline-block;
+  /* Fix inline-block extra margin */
+  font-size: initial;
+  margin-bottom: -1px;
+  /**
+   * List of triggers
+   */
 }
-/* line 11, ../sass/tab.scss */
-.tab > nav a:first-child {
-  border-left: solid 1px #aaa;
-}
-/* line 15, ../sass/tab.scss */
-.tab > nav a {
+/* line 22, ../sass/tab.scss */
+.tab > *:first-child > * {
   float: left;
   background: #eee;
   border-top: solid 1px #aaa;
   border-right: solid 1px #aaa;
+  border-bottom: solid 1px #aaa;
   padding: 5px;
 }
-/* line 23, ../sass/tab.scss */
-.tab > nav a.active {
+/* line 30, ../sass/tab.scss */
+.tab > *:first-child > *:first-child {
+  border-left: solid 1px #aaa;
+}
+/* line 34, ../sass/tab.scss */
+.tab > *:first-child > *.active {
   border-bottom: solid 1px #fff;
   background: #fff;
 }
-/* line 35, ../sass/tab.scss */
-.tab > div {
+/* line 46, ../sass/tab.scss */
+.tab > * + * {
   border: solid 1px #aaa;
   padding: 10px;
-  margin-top: -3px;
+  /* Fix inline-block extra margin */
+  font-size: initial;
 }
-/* line 41, ../sass/tab.scss */
-.tab > div > * {
+/* line 53, ../sass/tab.scss */
+.tab > * + * > * {
   display: none;
 }
-/* line 46, ../sass/tab.scss */
-.tab > div > *.active {
+/* line 57, ../sass/tab.scss */
+.tab > * + * > *.active {
   display: block;
 }

@@ -6,7 +6,7 @@
 
 	/**
      * Trigger. 
-     * It is assume odd children like a trigger
+     * It is assume odd adjacent children like a trigger
      */
 	 & > *:nth-child(odd) {
 		padding: 10px;
@@ -16,7 +16,7 @@
 		display: block;
 
 
-		&.active + div {
+		&.active + * {
 			max-height: 1000px;
 		}
 
@@ -35,7 +35,11 @@
 		}
 	}
 
-	.content {
+	/**
+     * Content. 
+     * It is assume event children like a content
+     */
+	& > *:nth-child(even) {
 		max-height: 0;
 		transition: max-height .5s;
 		overflow-y: hidden;
@@ -47,10 +51,6 @@
 			height: 10px;
 			display: block;
 		}
-	}
-	
-	.content.active {
-		
 	}
 
 }
