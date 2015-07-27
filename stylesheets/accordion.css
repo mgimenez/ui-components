@@ -1,26 +1,30 @@
 /* line 1, ../sass/accordion.scss */
 .accordion {
+  border-bottom: solid 1px #aaa;
+  border-left: solid 1px #aaa;
+  border-right: solid 1px #aaa;
   	/**
        * Trigger. 
        * It is assume odd children like a trigger
        */
 }
-/* line 6, ../sass/accordion.scss */
+/* line 11, ../sass/accordion.scss */
 .accordion > *:nth-child(odd) {
   padding: 10px;
   border-top: solid 1px #aaa;
   background: #eee;
   position: relative;
+  display: block;
 }
-/* line 13, ../sass/accordion.scss */
+/* line 19, ../sass/accordion.scss */
 .accordion > *:nth-child(odd).active + div {
   max-height: 1000px;
 }
-/* line 17, ../sass/accordion.scss */
+/* line 23, ../sass/accordion.scss */
 .accordion > *:nth-child(odd).active:after {
   transform: rotate(270deg);
 }
-/* line 21, ../sass/accordion.scss */
+/* line 27, ../sass/accordion.scss */
 .accordion > *:nth-child(odd):after {
   content: '>';
   transform: rotate(90deg);
@@ -30,14 +34,14 @@
   right: 10px;
   color: #aaa;
 }
-/* line 32, ../sass/accordion.scss */
+/* line 38, ../sass/accordion.scss */
 .accordion .content {
   max-height: 0;
   transition: max-height .5s;
   overflow-y: hidden;
   padding: 0 10px;
 }
-/* line 38, ../sass/accordion.scss */
+/* line 44, ../sass/accordion.scss */
 .accordion .content:after, .accordion .content:before {
   content: '';
   height: 10px;
