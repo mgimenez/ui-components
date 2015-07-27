@@ -29,18 +29,19 @@
 /* line 23, ../sass/tab.scss */
 .tab > nav a.active {
   border-bottom: solid 1px #fff;
+  background: #fff;
 }
-/* line 34, ../sass/tab.scss */
+/* line 35, ../sass/tab.scss */
 .tab > div {
   border: solid 1px #aaa;
   padding: 10px;
   margin-top: -3px;
 }
-/* line 40, ../sass/tab.scss */
+/* line 41, ../sass/tab.scss */
 .tab > div > * {
   display: none;
 }
-/* line 44, ../sass/tab.scss */
+/* line 46, ../sass/tab.scss */
 .tab > div > *.active {
   display: block;
 }
