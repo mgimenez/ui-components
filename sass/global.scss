@@ -2,10 +2,13 @@
 @import 'accordion';
 @import 'tab';
 
+body {
+	font-family: Tahoma;
+}
 a {
 	text-decoration: none;
 }
 
-.accordion, .tab {
-	margin: 50px 0;
+header, .accordion, .tab {
+	margin: 0 0 20px 0;
 }

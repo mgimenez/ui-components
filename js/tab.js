@@ -27,9 +27,16 @@
          */
         this.wrapper = wrapper;
 
-
+        /**
+         * Coleccions of triggers, it is assumed first child like a wrapper of trigger.
+         * Each trigger is associated with a content through of index
+         */
         this.nav = wrapper.children[0];
 
+        /**
+         * Coleccions of contents, it is assumed second child like a wrapper of contents.
+         * Each content is associated with a trigger through of index
+         */
         this.contents = wrapper.children[1];
 
         /**
@@ -48,15 +55,11 @@
             event.preventDefault();
             var target = event.target;
             
-            /**
-             * @todo Execute close method only if active tab != target
-             */
-            if (that.nav.querySelector('.active'))
+            if (that.nav.querySelector('.active') !== target)
                 that.close();
 
-            if (!target.classList.contains('active')) {
+            if (!target.classList.contains('active'))
                 that.open(target);
-            }
 
         });
 
@@ -70,6 +73,12 @@
 
     }
 
+    /**
+     * Get a element, add class name active on param element and on content with the same index, event emit open
+     * @private
+     * @param {Element}
+     * @eventsEmit {tab-open: {tab, content}}
+     */
     Tab.prototype.open = function (trigger) {
 
         var content = this.contents.children[this.getIndex(trigger)],
@@ -82,6 +91,11 @@
 
     }
     
+    /**
+     * Remove class active in nav and contents collection, emit event close 
+     * @private
+     * @eventEmit {tab-close: {tab, content}}
+     */
     Tab.prototype.close = function () {
 
         var closeEvent = new CustomEvent('tab-close', {
