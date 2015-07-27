@@ -22,12 +22,12 @@
 
         /**
          * Tag name of trigger. 
-         * It is assume first children like a trigger
+         * It is assume the first child like a trigger element, all triggers should be the same type
          */
         this.triggerName = wrapper.children[0].tagName;
 
         /**
-         * Gets an element target 
+         * Gets a target element 
          * @private
          * @param {Element}
          * @returns {Boolean}
@@ -42,25 +42,8 @@
 
             var target = event.target;
 
-            if (that.isTrigger(target)) {
-
-                if (target.nextElementSibling.classList.contains('active')) {
-                    target.nextElementSibling.classList.remove('active');
-                    var openEvent = new CustomEvent('accordion-close', {detail: {target: target.nextElementSibling}});
-                that.wrapper.dispatchEvent(openEvent);
-
-                } else {
-                    if (that.wrapper.querySelector('.active')) {
-                        var closeEvent = new CustomEvent('accordion-close', {detail: {target:that.wrapper.querySelector('.active') }});
-                        that.wrapper.querySelector('.active').classList.remove('active');
-                        that.wrapper.dispatchEvent(closeEvent);
-                    }
-                    target.nextElementSibling.classList.add('active');
-                    var openEvent = new CustomEvent('accordion-open', {detail: {target: target.nextElementSibling}});
-                that.wrapper.dispatchEvent(openEvent);
-                }
-
-            }
+            if (that.isTrigger(target))
+                target.classList.contains('active') ? that.closeTab(target) : that.openTab(target);
 
         });
     
@@ -71,6 +54,43 @@
         that.wrapper.addEventListener('accordion-open', function(e) {
             console.log('open', e.detail.target);
         })
+
+    }
+
+    /**
+     * Get a element, remove class name active on siblings elements if it is necessary and add class name active on param element
+     * @private
+     * @param {Element}
+     * @eventsEmit {accordion-open, accordion-close}
+     */
+    Accordion.prototype.openTab = function (trigger) {
+
+        var openEvent = new CustomEvent('accordion-open', {detail: {target: trigger}}),
+            closeEvent = new CustomEvent('accordion-close', {detail: {target:this.wrapper.querySelector('.active') }});
+
+        if (this.wrapper.querySelector('.active')) {
+            this.wrapper.querySelector('.active').classList.remove('active');
+            this.wrapper.dispatchEvent(closeEvent);
+        }
+
+        trigger.classList.add('active');
+        this.wrapper.dispatchEvent(openEvent);
+
+    }
+
+    /**
+     * Get a element and remove class active
+     * @private
+     * @param {Element}
+     * @eventEmit {accordion-close}
+     */
+
+    Accordion.prototype.closeTab = function (trigger) {
+        
+        var openEvent = new CustomEvent('accordion-close', {detail: {target: trigger}});
+
+        trigger.classList.remove('active');
+        this.wrapper.dispatchEvent(openEvent);
 
     }
 

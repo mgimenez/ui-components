@@ -1,0 +1,32 @@
+/* line 1, ../sass/tab.scss */
+.tab {
+  	/**
+       * Trigger. 
+       * It is assume first children ul like a trigger list
+       */
+  	/**
+       * Content
+       * It is assume adjacent children div like a containers of content
+       */
+}
+/* line 7, ../sass/tab.scss */
+.tab > nav {
+  overflow: hidden;
+  display: inline-block;
+}
+/* line 11, ../sass/tab.scss */
+.tab > nav a {
+  float: left;
+  background: #eee;
+  border-top: solid 1px #aaa;
+  border-right: solid 1px #aaa;
+  padding: 5px;
+}
+/* line 29, ../sass/tab.scss */
+.tab > div > * {
+  display: none;
+}
+/* line 33, ../sass/tab.scss */
+.tab > div > *.active {
+  display: block;
+}

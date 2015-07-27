@@ -1,0 +1,38 @@
+.tab {
+
+	/**
+     * Trigger. 
+     * It is assume first children ul like a trigger list
+     */
+	& > nav {
+		overflow: hidden;
+		display: inline-block;
+
+		a {
+			float: left;
+			background: #eee;
+			border-top: solid 1px #aaa;
+			border-right: solid 1px #aaa;
+			padding: 5px;
+		}
+
+		a.active {
+			
+		}	
+	}
+	
+
+	/**
+     * Content
+     * It is assume adjacent children div like a containers of content
+     */
+	& > div > * {
+		display: none;
+	}
+
+	& > div > *.active {
+		display: block;
+	}
+
+
+}

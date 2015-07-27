@@ -1,0 +1,11 @@
+@import 'screen';
+@import 'accordion';
+@import 'tab';
+
+a {
+	text-decoration: none;
+}
+
+.accordion, .tab {
+	margin: 50px 0;
+}
