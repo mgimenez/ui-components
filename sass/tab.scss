@@ -8,6 +8,10 @@
 		overflow: hidden;
 		display: inline-block;
 
+		a:first-child {
+			border-left: solid 1px #aaa;
+		}
+		
 		a {
 			float: left;
 			background: #eee;

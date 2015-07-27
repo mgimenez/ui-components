@@ -130,6 +130,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: inline-block;
 }
 /* line 11, ../sass/tab.scss */
+.tab > nav a:first-child {
+  border-left: solid 1px #aaa;
+}
+/* line 15, ../sass/tab.scss */
 .tab > nav a {
   float: left;
   background: #eee;
@@ -137,21 +141,21 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-right: solid 1px #aaa;
   padding: 5px;
 }
-/* line 19, ../sass/tab.scss */
+/* line 23, ../sass/tab.scss */
 .tab > nav a.active {
   border-bottom: solid 1px #fff;
 }
-/* line 30, ../sass/tab.scss */
+/* line 34, ../sass/tab.scss */
 .tab > div {
   border: solid 1px #aaa;
   padding: 10px;
   margin-top: -3px;
 }
-/* line 36, ../sass/tab.scss */
+/* line 40, ../sass/tab.scss */
 .tab > div > * {
   display: none;
 }
-/* line 40, ../sass/tab.scss */
+/* line 44, ../sass/tab.scss */
 .tab > div > *.active {
   display: block;
 }
@@ -159,14 +163,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /* line 5, ../sass/global.scss */
 body {
   font-family: Tahoma;
+  margin: 20px;
 }
 
-/* line 8, ../sass/global.scss */
+/* line 9, ../sass/global.scss */
 a {
   text-decoration: none;
 }
 
-/* line 12, ../sass/global.scss */
+/* line 13, ../sass/global.scss */
 header, .accordion, .tab {
   margin: 0 0 20px 0;
 }

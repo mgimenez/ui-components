@@ -15,6 +15,10 @@
   display: inline-block;
 }
 /* line 11, ../sass/tab.scss */
+.tab > nav a:first-child {
+  border-left: solid 1px #aaa;
+}
+/* line 15, ../sass/tab.scss */
 .tab > nav a {
   float: left;
   background: #eee;
@@ -22,21 +26,21 @@
   border-right: solid 1px #aaa;
   padding: 5px;
 }
-/* line 19, ../sass/tab.scss */
+/* line 23, ../sass/tab.scss */
 .tab > nav a.active {
   border-bottom: solid 1px #fff;
 }
-/* line 30, ../sass/tab.scss */
+/* line 34, ../sass/tab.scss */
 .tab > div {
   border: solid 1px #aaa;
   padding: 10px;
   margin-top: -3px;
 }
-/* line 36, ../sass/tab.scss */
+/* line 40, ../sass/tab.scss */
 .tab > div > * {
   display: none;
 }
-/* line 40, ../sass/tab.scss */
+/* line 44, ../sass/tab.scss */
 .tab > div > *.active {
   display: block;
 }
