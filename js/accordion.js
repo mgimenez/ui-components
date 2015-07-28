@@ -20,6 +20,8 @@
          */
         this.wrapper = wrapper;
 
+        this._init();
+
         /**
          * Tag name of trigger. 
          * It is assume the first child like a trigger element, all triggers should be the same type
@@ -28,6 +30,7 @@
 
         /**
          * Gets a target element 
+         * @function
          * @private
          * @param {HTMLElement}
          * @returns {Boolean}
@@ -57,13 +60,24 @@
 
     }
 
+     /**
+     * Initialize a new instance of Component
+     * @function
+     * @private
+     * @returns {component}
+     */
+    Accordion.prototype._init = function() {
+        this.wrapper.classList.contains('accordion') ? false : this.wrapper.classList.add('accordion');
+    }
+
     /**
      * Get a element, remove class name active on siblings elements if it is necessary and add class name active on param element
+     * @function
      * @private
      * @param {HTMLElement}
      * @eventsEmit {accordion-open:{tab}, accordion-close:{tab}}
      */
-    Accordion.prototype.open = function (tab) {
+    Accordion.prototype.open = function(tab) {
 
         var openEvent = new CustomEvent('accordion-open', {detail: {tab: tab}});
         this.close();
@@ -75,11 +89,11 @@
 
     /**
      * Get a element and remove class active
+     * @function
      * @private
      * @eventEmit {accordion-close}
      */
-
-    Accordion.prototype.close = function () {
+    Accordion.prototype.close = function() {
         
         var closeEvent = new CustomEvent('accordion-close', {detail: {tab: this.wrapper.querySelector('.active')}});
 
@@ -89,21 +103,35 @@
         }
 
     }
+    
+    /**
+     * Get a query string or HTMLElement, return an Array with component's instances
+     * @function
+     * @public
+     * @param {Query String || HTMLElement}
+     * @returns {Array}
+     */
+    Accordion.getInstance = function(param) {
 
-    Accordion.prototype.instance = function (query) {
-        var wrappers = doc.querySelectorAll(query),
+        var wrappers = param instanceof HTMLElement ? [param] : doc.querySelectorAll(param),
             i = 0,
             j = wrappers.length,
             k = 0,
-            l = _accordions.length;
+            l = _accordions.length,
+            instances = [];
 
         for (i; i < j; i += 1) {
+            k = 0;
             for (k; k < l; k +=1) {
-                console.log(wrappers[i]);
+                if (wrappers[i] === _accordions[k].wrapper) {
+                    instances.push(_accordions[k]);
+                }
             }
         }
 
+        return instances;
     }
+
     /**
      * Init instances component
      */

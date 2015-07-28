@@ -11,8 +11,8 @@
 	/**
      * Discloses information progressively, revealing only the essentials.
      * @constructor
-     * @param {HTMLElement} wrapper A container with the "accordion" class name
-     * @returns {accordion} A new instance of Accordion.
+     * @param {HTMLElement} wrapper A container with the "tab" class name
+     * @returns {tab} A new instance of Tab.
      */
     function Tab(wrapper) {
         /**
@@ -116,6 +116,33 @@
     }
 
     /**
+     * Get a query string or HTMLElement, return an Array with component's instances
+     * @public
+     * @param {Query String || HTMLElement}
+     * @returns {Array}
+     */
+    Tab.getInstance = function (param) {
+
+        var wrappers = param instanceof HTMLElement ? [param] : doc.querySelectorAll(param),
+            i = 0,
+            j = wrappers.length,
+            k = 0,
+            l = _tabs.length,
+            instances = [];
+
+        for (i; i < j; i += 1) {
+            k = 0;
+            for (k; k < l; k +=1) {
+                if (wrappers[i] === _tabs[k].wrapper) {
+                    instances.push(_tabs[k]);
+                }
+            }
+        }
+
+        return instances;
+    }
+
+    /**
      * Init instances component
      */
     function initialize() {
@@ -124,7 +151,7 @@
             j = wrappers.length;
 
         for (i; i < j; i += 1) {
-            win._tab.push(new Tab(wrappers[i]));
+            win._tabs.push(new Tab(wrappers[i]));
         }
     }
 
@@ -132,7 +159,7 @@
      * Expose
      */
     // Instances
-    win._tab = win._tab || [];
+    win._tabs = win._tabs || [];
     // Constructor
     win.Tab = Tab;
 
