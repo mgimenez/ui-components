@@ -74,31 +74,33 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-right: solid 1px #aaa;
   	/**
        * Trigger. 
-       * It is assume odd adjacent children like a trigger
+       * It is assume odd adjacent children like a trigger (& > *:nth-child(odd))
        */
   	/**
        * Content. 
-       * It is assume event children like a content
+       * It is assume event children like a content (& > *:nth-child(even))
        */
 }
 /* line 11, ../sass/accordion.scss */
-.accordion > *:nth-child(odd) {
+.accordion .tab-trigger {
   padding: 10px;
   border-top: solid 1px #aaa;
   background: #eee;
   position: relative;
   display: block;
 }
-/* line 19, ../sass/accordion.scss */
-.accordion > *:nth-child(odd).active + * {
+/* line 18, ../sass/accordion.scss */
+.accordion .tab-trigger.active + .tab-content
+ {
   max-height: 1000px;
 }
 /* line 23, ../sass/accordion.scss */
-.accordion > *:nth-child(odd).active:after {
+.accordion .tab-trigger.active:after
+ {
   transform: rotate(270deg);
 }
-/* line 27, ../sass/accordion.scss */
-.accordion > *:nth-child(odd):after {
+/* line 28, ../sass/accordion.scss */
+.accordion .tab-trigger:after {
   content: '>';
   transform: rotate(90deg);
   transition: transform .5s;
@@ -107,15 +109,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   right: 10px;
   color: #aaa;
 }
-/* line 42, ../sass/accordion.scss */
-.accordion > *:nth-child(even) {
+/* line 43, ../sass/accordion.scss */
+.accordion .tab-content {
   max-height: 0;
   transition: max-height .5s;
   overflow-y: hidden;
   padding: 0 10px;
 }
-/* line 48, ../sass/accordion.scss */
-.accordion > *:nth-child(even):after, .accordion > *:nth-child(even):before {
+/* line 49, ../sass/accordion.scss */
+.accordion .tab-content:after, .accordion .tab-content:before {
   content: '';
   height: 10px;
   display: block;
@@ -127,7 +129,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-size: 0;
   	/**
        * Container Triggers. 
-       * It is assume first adjacent child like a container of triggers
+       * It is assume first adjacent child like a container of triggers (& > *:first-child)
        */
   	/**
        * Container Contents
@@ -135,7 +137,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
        */
 }
 /* line 10, ../sass/tab.scss */
-.tab > *:first-child {
+.tab tabs-triggers {
   overflow: hidden;
   display: inline-block;
   /* Fix inline-block extra margin */
@@ -146,7 +148,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
    */
 }
 /* line 22, ../sass/tab.scss */
-.tab > *:first-child > * {
+.tab tabs-triggers > * {
   float: left;
   background: #eee;
   border-top: solid 1px #aaa;
@@ -155,11 +157,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 5px;
 }
 /* line 30, ../sass/tab.scss */
-.tab > *:first-child > *:first-child {
+.tab tabs-triggers > *:first-child {
   border-left: solid 1px #aaa;
 }
 /* line 34, ../sass/tab.scss */
-.tab > *:first-child > *.active {
+.tab tabs-triggers > *.active {
   border-bottom: solid 1px #fff;
   background: #fff;
 }

@@ -22,41 +22,23 @@
 
         this._init();
 
-        /**
-         * Tag name of trigger. 
-         * It is assume the first child like a trigger element, all triggers should be the same type
-         */
-        this.triggerName = wrapper.children[0].tagName;
-
-        /**
-         * Gets a target element 
-         * @function
-         * @private
-         * @param {HTMLElement}
-         * @returns {Boolean}
-         */
-        this.isTrigger = function (target) {
-            return target.tagName === that.triggerName && target.parentElement === that.wrapper;
-        }
-
-
         this.wrapper.addEventListener('click', function(event) {
 
             event.preventDefault();
             var target = event.target;
 
-            if (that.isTrigger(target))
+            if (target.classList.contains('tab-trigger'))
                 target.classList.contains('active') ? that.close() : that.open(target);
 
         });
     
-        this.wrapper.addEventListener('accordion-close', function(e) {
-            console.log('close', e.detail.tab);
-        })
+        // this.wrapper.addEventListener('accordion-close', function(e) {
+        //     console.log('close', e.detail.tab);
+        // })
 
-        this.wrapper.addEventListener('accordion-open', function(e) {
-            console.log('open', e.detail.tab);
-        })
+        // this.wrapper.addEventListener('accordion-open', function(e) {
+        //     console.log('open', e.detail.tab);
+        // })
 
     }
 
@@ -67,7 +49,20 @@
      * @returns {component}
      */
     Accordion.prototype._init = function() {
-        this.wrapper.classList.contains('accordion') ? false : this.wrapper.classList.add('accordion');
+        var i = 0,
+            j = this.wrapper.children.length;
+
+        this.wrapper.classList.add('accordion');
+
+        for (i; i < j; i += 1) {
+            //if is odd
+            if (!(i % 2)) {
+                this.wrapper.children[i].classList.add('tab-trigger');
+            } else {
+                this.wrapper.children[i].classList.add('tab-content');
+            }
+        }
+
     }
 
     /**

@@ -4,7 +4,7 @@
   font-size: 0;
   	/**
        * Container Triggers. 
-       * It is assume first adjacent child like a container of triggers
+       * It is assume first adjacent child like a container of triggers (& > *:first-child)
        */
   	/**
        * Container Contents
@@ -12,7 +12,7 @@
        */
 }
 /* line 10, ../sass/tab.scss */
-.tab > *:first-child {
+.tab tabs-triggers {
   overflow: hidden;
   display: inline-block;
   /* Fix inline-block extra margin */
@@ -23,7 +23,7 @@
    */
 }
 /* line 22, ../sass/tab.scss */
-.tab > *:first-child > * {
+.tab tabs-triggers > * {
   float: left;
   background: #eee;
   border-top: solid 1px #aaa;
@@ -32,11 +32,11 @@
   padding: 5px;
 }
 /* line 30, ../sass/tab.scss */
-.tab > *:first-child > *:first-child {
+.tab tabs-triggers > *:first-child {
   border-left: solid 1px #aaa;
 }
 /* line 34, ../sass/tab.scss */
-.tab > *:first-child > *.active {
+.tab tabs-triggers > *.active {
   border-bottom: solid 1px #fff;
   background: #fff;
 }

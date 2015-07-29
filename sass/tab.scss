@@ -5,9 +5,9 @@
 
 	/**
      * Container Triggers. 
-     * It is assume first adjacent child like a container of triggers
+     * It is assume first adjacent child like a container of triggers (& > *:first-child)
      */
-	& > *:first-child {
+	 tabs-triggers {
 		overflow: hidden;
 		display: inline-block;
 		
